@@ -1,0 +1,34 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="javascripts/angular.min.js"></script>
+        <script src="javascripts/angular-route.min.js"></script>
+        <script src="javascripts/angular-resource.min.js"></script>
+        <script src="javascripts/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="javascripts/checklistapp.js"></script>
+        <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+        <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <script>
+            var socket = io();
+        </script>
+    </head>
+    <body class="container-fluid">
+        <div ng-app="checklistapp">
+            <div id="main" class="container">
+                <nav class="navbar-fluid navbar-default navbar-fixed-top">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">{{application_title}}</a>
+                        <p class="navbar-text">{{application_subtext}}</p>
+                    </div>
+                </nav>
+                <div>
+                    <div ng-view/>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

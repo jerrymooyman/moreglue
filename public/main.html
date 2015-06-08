@@ -1,0 +1,15 @@
+<div>
+    <p>
+        <h3>{{checklist_name}}</h3>
+    </p>
+    <div id="step-list">
+        <accordion>
+        <div class="steps" ng-repeat="step in steps | orderBy: 'number': false">
+            <accordion-group>
+                <accordion-heading>
+                    {{step.number}} {{step.process}}
+                </accordion-heading>
+            </accordion-group>
+        </div>
+    </div>
+</div>
