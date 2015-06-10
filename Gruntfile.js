@@ -13,15 +13,25 @@ module.exports = function(grunt){
         karma: {
             unit: {
                 configFile: 'karma.conf.js',
-                autoWatch: true
             }
-        }
+        },
+
+        watch: {
+            scripts: {
+                files: ['**/*.js'],
+                tasks: ['jshint'],
+                options: {
+                    spawn: false,
+                }
+            },
+        },
     }); 
 
     // load packages
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
 
     // setup tasks
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['jshint', 'karma']);
 };

@@ -8,10 +8,18 @@ var io = require('socket.io')(http);
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var flash = require('connect-flash');
+
+var mongoose = require('mongoose');
+var configDB = require('./config/database.js');
+mongoose.connect(configDB.url);
 
 // register routes
 var index = require('./routes/index');
 var api = require('./routes/api');
+var auth = require('./routes/auth')(passport);
+
 
 // views as directory of all template files
 app.set('views', path.join(__dirname, 'views'));
@@ -22,10 +30,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({entended: false}));
 app.use(cookieParser());
+app.use(session({ secret: 'iwearmysunglassesatnight'}));
+app.use(passport.initialize());
+app.use(flash());
 
 // set routes handlers
 app.use('/', index);
 app.use('/api', api);
+app.use('/auth', auth);
 
 // setup socket io
 io.on('connection', function(socket){

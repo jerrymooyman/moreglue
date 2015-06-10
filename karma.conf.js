@@ -1,22 +1,23 @@
 // Karma configuration
-// Generated on Wed Jun 10 2015 14:27:54 GMT+1000 (AEST)
+// Generated on Wed Jun 10 2015 20:51:16 GMT+1000 (AEST)
 
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '.',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      '*.js',
-      'test/**/*.js'
+//      'test-main.js',
+      {pattern: '**/*.js', included: true},
+      {pattern: 'test/', included: true}
     ],
 
 
@@ -56,7 +57,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
