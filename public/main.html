@@ -1,15 +1,25 @@
-<div>
-    <p>
-        <h3>{{checklist_name}}</h3>
-    </p>
-    <div id="step-list">
-        <accordion>
-        <div class="steps" ng-repeat="step in steps | orderBy: 'number': false">
-            <accordion-group>
-                <accordion-heading>
-                    {{step.number}} {{step.process}}
-                </accordion-heading>
-            </accordion-group>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h3>{{checklist_name}}</h3>
+            <div id="step-list">
+                <accordion>
+                    <div class="steps" ng-repeat="step in steps | orderBy: 'number': false">
+                        <accordion-group>
+                        <accordion-heading>
+                            {{step.number}} {{step.process}}
+                        </accordion-heading>
+                        </accordion-group>
+                    </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon-comment"></span>Banter Dome
+                </div>
+            </div>
         </div>
     </div>
 </div>

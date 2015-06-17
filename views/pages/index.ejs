@@ -21,8 +21,16 @@
             <div id="main" class="container">
                 <nav class="navbar-fluid navbar-default navbar-fixed-top">
                     <div class="container">
-                        <a class="navbar-brand" href="#">{{application_title}}</a>
+                        <a class="navbar-brand" href="#/">{{application_title}}</a>
                         <p class="navbar-text">{{application_subtext}}</p>
+                        <p class="navbar-text navbar-right" ng-hide="is_authenticated">
+                            <a href="#login">Login</a>
+                            <a href="#register">Register</a>
+                        </p>
+                        <p class="navbar-text navbar-right" ng-show="is_authenticated">
+                            <a href="#" ng-click="logout()">Logout</a>
+                        </p>
+                        <p class="navbar-text navbar-right" ng-show="is_authenticated">Signed in as {{current_user}}</p>
                     </div>
                 </nav>
                 <div>

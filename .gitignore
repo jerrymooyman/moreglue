@@ -1,0 +1,6 @@
+# swapfiles
+*.swp
+
+# dependency directory
+node_modules
+

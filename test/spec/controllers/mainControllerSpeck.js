@@ -1,4 +1,3 @@
-'use strict';
 
 describe('Constroller: mainController', function(){
     it('test', function(){

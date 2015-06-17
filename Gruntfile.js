@@ -4,6 +4,16 @@ module.exports = function(grunt){
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        express: {
+            myServer: {
+                port: 3000,
+                server: ['app.js'],
+                bases: ['public'],
+                livereload: true,
+                serverreload: true
+            }
+        },
+
         jshint: {
             dev: {
                 src: ['public/javascripts/*.js', 'app.js']
@@ -16,7 +26,17 @@ module.exports = function(grunt){
             }
         },
 
+        jasmine: {
+            all: {
+                src: ['test/spec/**/*.js'],
+                errorReporting: true
+            }
+        },
+
         watch: {
+            options: {
+                livereload: true,
+            },
             scripts: {
                 files: ['**/*.js'],
                 tasks: ['jshint'],
@@ -24,14 +44,21 @@ module.exports = function(grunt){
                     spawn: false,
                 }
             },
+            html: {
+                files: ['**/*.html'],
+            },
+            css: {
+                files: ['**/*.css'],
+            }
         },
     }); 
 
     // load packages
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+    //grunt.loadNpmTasks('grunt-express');
 
     // setup tasks
-    grunt.registerTask('default', ['jshint', 'karma']);
+    grunt.registerTask('default', ['jshint', 'jasmine']);
 };

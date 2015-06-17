@@ -35,3 +35,7 @@ a {
 	padding: 5px;
 	margin: 0 auto;
 }
+
+.panel .glyphicon, glyphicon {
+    margin-right: 5px
+}

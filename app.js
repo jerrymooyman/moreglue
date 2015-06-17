@@ -1,5 +1,6 @@
 
 // set variables for environment
+var session = require('express-session');
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -12,8 +13,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var mongoose = require('mongoose');
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
+//var configDB = require('./config/database.js');
+//mongoose.connect(configDB.url);
 
 // register routes
 var index = require('./routes/index');
@@ -30,9 +31,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({entended: false}));
 app.use(cookieParser());
-app.use(session({ secret: 'iwearmysunglassesatnight'}));
+app.use(session({ secret: 'badger'}));
 app.use(passport.initialize());
-app.use(flash());
+app.use(passport.session());
+//app.use(flash());
 
 // set routes handlers
 app.use('/', index);
@@ -51,9 +53,13 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// initialise passport
+var initPassport = require('./passport-init');
+initPassport (passport);
+
 // set server port
 http.listen(3000, function(){
     console.log('server listening on *:3000');
 });
 
-//module.exports = app;
+module.exports = app;
