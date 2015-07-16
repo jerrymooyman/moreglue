@@ -9,8 +9,7 @@ module.exports = function(passport){
     });
 
     router.get('/failure', function(req, res){
-        console.log('failed: ' + util.inspect(req));
-        res.send({state: 'failure', user: null, message: req.message ? req.message : 'incorrect username or password'}); 
+        res.send({state: 'failure', user: null, message: 'Incorrect username or password'}); 
     });
 
     router.post('/register', passport.authenticate('register', {

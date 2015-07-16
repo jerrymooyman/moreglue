@@ -2,24 +2,57 @@
     <div class="row">
         <div class="col-md-8">
             <h3>{{checklist_name}}</h3>
+            <div>
+                <!--progressbar max="{{steps.length}}" value="{{stepsCompleted}}" type="warning">{{stepsCompleted}}/{{steps.length}}</progressbar-->
+                <progressbar class="progress-striped" max="stepsCount" value="stepsCompleted" type="warning">{{stepsCompleted}}/{{stepsCount}}</progressbar>
+            </div>
             <div id="step-list">
-                <accordion>
-                    <div class="steps" ng-repeat="step in steps | orderBy: 'number': false">
-                        <accordion-group>
-                        <accordion-heading>
-                            {{step.number}} {{step.process}}
-                        </accordion-heading>
+                <accordion close_others='false'>
+                    <div class="steps" ng-repeat="step in steps | orderBy: 'number': false" ng-init="openStatus = true">
+                        <accordion-group is_open=openStatus>
+                            <accordion-heading> 
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': openStatus, 'glyphicon-chevron-right': !openStatus}"></i>
+                                {{step.number}} {{step.process}}
+                            </accordion-heading>
+                            <div ng-repeat="sub_step in step.sub_steps | orderBy: 'number': false">
+                                {{sub_step.number}}. {{sub_step.process}}
+                            </div>
+                            <button type="button" ng-show="showCompleteButton(step)" ng-click="setComplete(step.number)" class="btn btn-primary pull-right">
+                                Complete
+                            </button>
+                            <div ng-show="step.done" class="pull-right">
+                                Completed by {{step.completed_by}} @ {{step.completed_time}}
+                            </div>
                         </accordion-group>
                     </div>
+                </accordion>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <span class="glyphicon-comment"></span>Banter Dome
+                    <span class="glyphicon glyphicon-comment"></span>Banter Dome
                 </div>
             </div>
+
+
+            <div class="panel-body">
+                <ul class="chat">
+                
+                </ul>
+            </div>
+
+            <div class="panel-footer">
+                <form class="input-group">
+                    <input id="btn-input" type="text" ng-model="chat_message" class="form-control input-sm" placeholder="Type your message here..." />
+                    <span class="input-group-btn">
+                        <input class="btn btn-warning btn-sm" id="btn-chat" type="submit" value="Send" ng-click="sendChatMessage()">Send</input>
+                    </span>
+                </form>
+            </div>
+
+
         </div>
     </div>
 </div>

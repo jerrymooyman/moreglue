@@ -1,7 +1,13 @@
 <form class="form-auth" ng-submit="register()">
     <h2>Register</h2>
     <alert ng-hide="error_message==''" type="danger">{{error_message}}</alert>
-    <input type="username" ng-model="user.username" placeholder="Username" class="form-control"></input><br>
-    <input type="password" ng-model="user.password" placeholder="Password" class="form-control"></input><br>
+    <div class="input-group margin-bottom-sm">
+        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+        <input type="username" ng-model="user.username" placeholder="Username" class="form-control"></input><br>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+        <input type="password" ng-model="user.password" placeholder="Password" class="form-control"></input><br>
+    </div>
     <input type="submit" value="Register" class="btn btn-primary"></input>
 </form>
